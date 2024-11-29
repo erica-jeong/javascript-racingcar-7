@@ -36,6 +36,8 @@ class CarRacingManager {
         this.#outputView.printOneRoundResult(cars);
       }
 
+      // 6. 최종 우승자를 결정하는 기능
+      const winners = this.#decideWinner(cars);
     } catch (error) {
       throw error;
     }
@@ -80,6 +82,19 @@ class CarRacingManager {
     cars.forEach(car => {
       car.decisionGoStop();
     });
+  }
+
+  #decideWinner(cars) {
+    let maxCount = 0;
+    cars.forEach(car => {
+      if (car.goCount > maxCount) maxCount = car.goCount;
+    });
+
+    const winners = [];
+    cars.forEach(car => {
+      if (car.goCount === maxCount) winners.push(car.name);
+    });
+    return winners;
   }
 }
 
