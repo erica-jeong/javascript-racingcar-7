@@ -19,9 +19,13 @@ class CarRacingManager {
       // 1. 자동차 이름을 입력 받는 기능
       const carNames = await this.#getCarsName();
       const cars = this.#makeCars(carNames);
-      
+
       // 2. 시도할 횟수를 입력 받는 기능
       const attemptCount = await this.#getAtemptCount();
+
+      // 3. 각 자동치가 전진인지 정지인지 결정하는 기능
+      this.#racingOneRound(cars);
+
     } catch (error) {
       throw error;
     }
@@ -60,6 +64,12 @@ class CarRacingManager {
       cars.push(car);
     });
     return cars;
+  }
+
+  #racingOneRound(cars) {
+    cars.forEach(car => {
+      car.decisionGoStop();
+    });
   }
 }
 
