@@ -26,6 +26,9 @@ class CarRacingManager {
       // 3. 각 자동치가 전진인지 정지인지 결정하는 기능
       this.#racingOneRound(cars);
 
+      // 4. 한번 시도 할 떄마다 실행 결과를 출력하는 기능
+      this.#outputView.printResultMessage();
+      this.#outputView.printOneRoundResult(cars);
     } catch (error) {
       throw error;
     }
