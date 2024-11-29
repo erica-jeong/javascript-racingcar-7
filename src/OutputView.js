@@ -13,6 +13,7 @@ class OutputView {
     cars.forEach(car => {
       Console.print(`${car.name} : ${'-'.repeat(car.goCount)}`);
     });
+    Console.print('');
   }
 }
 

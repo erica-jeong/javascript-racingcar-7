@@ -29,6 +29,13 @@ class CarRacingManager {
       // 4. 한번 시도 할 떄마다 실행 결과를 출력하는 기능
       this.#outputView.printResultMessage();
       this.#outputView.printOneRoundResult(cars);
+
+      // 5. 시도 횟수만큼 3,4 번을 반복하는 기능
+      for (let i = 0; i < attemptCount - 1; i += 1) {
+        this.#racingOneRound(cars);
+        this.#outputView.printOneRoundResult(cars);
+      }
+
     } catch (error) {
       throw error;
     }
