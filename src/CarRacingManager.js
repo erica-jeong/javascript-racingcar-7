@@ -15,8 +15,10 @@ class CarRacingManager {
 
   async start() {
     try {
+      // 1. 자동차 이름을 입력 받는 기능
       const carNames = await this.#getCarsName();
-      console.log(carNames)
+      // 2. 시도할 횟수를 입력 받는 기능
+      const attemptCount = await this.#getAtemptCount();
     } catch (error) {
       throw error;
     }
@@ -29,6 +31,19 @@ class CarRacingManager {
         this.#validate.isEmpty(input);
         this.#validate.isExceptedCarName(input);
         return input.split(',');
+      } catch (error) {
+        this.#outputView.printErrorMessage(error.message);
+      }
+    }
+  }
+
+  async #getAtemptCount() {
+    while (true) {
+      try {
+        const input = await this.#inputView.readAttemptCount();
+        this.#validate.isEmpty(input);
+        this.#validate.isExceptedAttemptCount(input);
+        return Number(input);
       } catch (error) {
         this.#outputView.printErrorMessage(error.message);
       }

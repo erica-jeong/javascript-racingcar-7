@@ -34,6 +34,12 @@ class Validate {
       }
     })
   }
+
+  isExceptedAttemptCount(input)  {
+    this.isNumber(input);
+    this.isInteger(input);
+    this.isPositiveNumber(input);
+  }
 }
 
 export default Validate;
