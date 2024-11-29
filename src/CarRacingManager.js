@@ -38,35 +38,40 @@ class CarRacingManager {
 
       // 6. 최종 우승자를 결정하는 기능
       const winners = this.#decideWinner(cars);
+
+      // 7. 최종 우승자를 출력하는 기능
+      this.#outputView.printWinners(winners);
     } catch (error) {
       throw error;
     }
   }
 
   async #getCarsName() {
-    while (true) {
-      try {
-        const input = await this.#inputView.readCarsName();
-        this.#validate.isEmpty(input);
-        this.#validate.isExceptedCarName(input);
-        return input.split(',');
-      } catch (error) {
-        this.#outputView.printErrorMessage(error.message);
-      }
+    // while (true) {
+    try {
+      const input = await this.#inputView.readCarsName();
+      this.#validate.isEmpty(input);
+      this.#validate.isExceptedCarName(input);
+      return input.split(',');
+    } catch (error) {
+      this.#outputView.printErrorMessage(error.message);
+      throw error;
     }
+    // }
   }
 
   async #getAtemptCount() {
-    while (true) {
-      try {
-        const input = await this.#inputView.readAttemptCount();
-        this.#validate.isEmpty(input);
-        this.#validate.isExceptedAttemptCount(input);
-        return Number(input);
-      } catch (error) {
-        this.#outputView.printErrorMessage(error.message);
-      }
+    // while (true) {
+    try {
+      const input = await this.#inputView.readAttemptCount();
+      this.#validate.isEmpty(input);
+      this.#validate.isExceptedAttemptCount(input);
+      return Number(input);
+    } catch (error) {
+      this.#outputView.printErrorMessage(error.message);
+      throw error;
     }
+    // }
   }
 
   #makeCars(carNames) {
